@@ -143,3 +143,33 @@ Okolo roku 1995 se ukázalo, že to dost nebylo a nové N bylo zvoleno 128 (3*10
 ## Adresace v IPv4
 IPv4 has 32 bites (4 byte)
 Every byte can have from 0 to 255 
+
+## Síťování neboli segmentace
+**Adresní rozsah sítě** - skupina všech IP adres, které patří do *stejné* sítě (*podsítě*)
+
+**Lokální síť (podsíť)** - oblast sítě, ve které všechny stanice mají adresu ze společného adresního rozsahu.
+
+Pro určení velikosti skupiny se používá **síťová maska**, která má stejnou velikost (v bitech) jako *IPv4 adresa* (32 bitů)
+
+*Maska sítě říká*, jakou část IP adresz mají všechy stanice patřící do stejné **sítě** (podsítě) společnou.
+
+## Prefixová notace u IPv4
+Tvar zápisu je obecně **IP/prefix**, kde prefix je počet bitů, které jsou společné pro všechny stanice dané sítě (podsítě).
+
+Příklad pro adresu 123.122.120.121 zvolíme prefic /30.
+Pro síť bude platit, že 30 bitů adresy bude pro všechny stanice společný a zbytek (32 - 30 = 2 bity) bude určovat konkrétní stanici.
+
+**2 bity** umožňují vytvořit 2^2 různých adres
+
+01111011-01111010-01111000-011110|00 (120)
+
+01111011-01111010-01111000-011110|01 (121)
+
+01111011-01111010-01111000-011110|10 (122)
+
+01111011-01111010-01111000-011110|11 (123)
+
+Jako **adresa sítě** se uvádí vždy nejnižsí možná adresa (bitz za prefixem jsou nulové).
+Pro příklad výše tedy **123.122.120.120/30**.
+
+## Maska a adresa sítě
