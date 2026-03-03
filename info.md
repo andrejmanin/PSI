@@ -173,3 +173,48 @@ Jako **adresa sítě** se uvádí vždy nejnižsí možná adresa (bitz za prefi
 Pro příklad výše tedy **123.122.120.120/30**.
 
 ## Maska a adresa sítě
+Adresa sítě = označení všech IPv4 adres, které patří do daného adresního rozsahu
+
+Maska jedničkami označuje to, co mají stanice ve stejné síti (podsíti) v IPv4 adresách společné a nulami, v čem se liší
+
+Poduk uděláme operace **IPv4 adresa AND Maska po bitech**, získáme adresu sítě (1. adresu skupiny) tato se běžně používá pro **směrování**.
+
+                     011110110111101101111011011110|11 (123.123.123.123)
+             AND     111111111111111111111111111111|00 (255.255.255.252)
+                     011110110111101101111011011110|00 (123.123.123.120)
+
+## Síť, brána, broadcast
+![sit_brana_brodkast](img/sit_brana_brodkast.png)
+
+**Směrovač patří do IP rozsahů všech připojených podsítí**
+
+**Brána** - implicitní směrovač, přes který stanice v dané podsíti mohou komunikovat s jinými podsítěmi
+
+**Broadcast** - zpráva, kterou obdrží všechny stanice v dané podsíti mimo původce
+
+## Mapování broadcastu a brány do adres v IPv4, rozsah sítě
+**Adresa sítě** - **nejnižší adresa** v daném rozsahu
+
+**Broadcast** - **nejvyšší adresa** v daném rozsahu
+
+**Brána** má tzpicky (nikoli povinně) **druhou nejvyšší či nejnižší adresu** v daném rozsahu
+
+Pro náš **příklad prefix /30**
+
+          123     123       123
+          01111011-01111011-01111011-011110|00 (120) Adresa sítě
+          01111011-01111011-01111011-011110|01 (121) Adresa pro stanici
+          01111011-01111011-01111011-011110|10 (122) Brána
+          01111011-01111011-01111011-011110|11 (123) Broadcast
+
+Délka prefixu (L) p určuje počet stanic, které lze do sítě umístit.
+
+Pro nalezení minimálního N, umožňujícího adresoat K adres musí platit **K <= 2^N, L = 32-N**
+
+**Počet využitelných adres v síti** je **2^N-2** (broadcast a adresa sítě dvě seberou).
+
+**Počet využitelných adres v síti bez brány** je **2^N-3** (broadcast, adresa sítě, brána) 
+
+## Resources
+Všechná informace byla vzíta ze stranek univerzity ČVUT FIT a ze prezentace  
+ - https://courses.fit.cvut.cz/BI-PSI/media/lectures/P_1.pdf
